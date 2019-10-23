@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Using Google ‘Benchmark’ library to micro-benchmark in Makefile project</title>
-</head>
-<body style="font-family: Tahoma,Geneva,sans-serif; font-size: 16px;">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
-<h1 style="text-align: center;"><strong>Using Google ‘Benchmark’ library to micro-benchmark in Makefile project</strong></h1>
+        .content {
+            max-width: 900px;
+            margin: auto;
+            border: 2px royalblue;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13pt;
+        }
+
+        .border {
+            border-width: 5px;
+            border-color: gray;
+            border-style: solid;
+            border-radius: 10px;
+            max-width: 900px;
+        }
+
+        .commands {
+            border-width: 3px;
+            border-color: gray;
+            border-style: solid;
+            border-radius: 6px;
+            padding: 5px;
+            max-width: 900px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="content">
+
+<h1 style="text-align: center;">Using Google ‘Benchmark’ library to micro-benchmark in Makefile project</h1>
 
 <p>In last tutorial we have seen how to install the Google Benchmark library on Linux system. What I didn't mentioned in last article is that it's an "micro-benchmark support library". It means that it is better to use the library to benchmark specific operations/part of code in isolation just like unit-testing.</p>
 
@@ -17,52 +47,46 @@ This type of benchmark is very useful for the operations or section of code whic
 For example we use various containers like std::vector, std::list, etc. provided by the standard library. They can be used in different ways. We can use a std::vector without hinting any initial size or we can reserve size for some minimum number of elements.<br/>
 Bench-marking behavior of their usage styles at such granular level can have major impact on applications overall performance.</p>
 
-<p>If purpose of micro-benchmarks is still not clear there is a nice video about it by <b>Chandler Carruth</b> which you can look at: <a href="https://www.youtube.com/watch?v=nXaxk27zwlk" rel="noopener noreferrer" target="_blank">CppCon 2015: Chandler Carruth Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!</a>
-</p>
+<p>If purpose of micro-benchmarks is still not clear there is a nice video about it by <b>Chandler Carruth</b> which you can look at: <a href="https://www.youtube.com/watch?v=nXaxk27zwlk" rel="noopener noreferrer" target="_blank">CppCon 2015: Chandler Carruth Tuning C++: Benchmarks, and CPUs, and Compilers! Oh My!</a></p>
 
 <p>In this tutorial we will look at how to use the Google benchmark library using a simple project managed using Makefile. I am aware of other build-systems available like CMake, SCons but for simplicity we will use a hand written Makefile.</p>
 
 <h3>Benchmark Environment</h3>
-<b>CPU :</b> Intel® Core™ i7-5820K CPU @ 3.30GHz × 6 (Max 4.00 GHz, NUMA Architecture)<br>
-<b>RAM :</b> 8 GB @ 2133 MHz (2 x 4 GB)<br>
-<b>Operating System :</b> Fedora 25 (Kernel 4.11.12-200.fc25.x86_64)<br>
-<b>GCC Version :</b> v6.4.1<br>
-<b>Google Benchmark Library Version :</b> v1.1.0<br>
-<b>Other :</b> Hyper-threading is turned off. Out of 6 available CPU cores, Core-0 and Core-1 are isolated.<br>
+<b>CPU :</b> Intel® Core™ i7-5820K CPU @ 3.30GHz × 6 (Max 4.00 GHz, NUMA Architecture)<br/>
+<b>RAM :</b> 8 GB @ 2133 MHz (2 x 4 GB)<br/>
+<b>Operating System :</b> Fedora 25 (Kernel 4.11.12-200.fc25.x86_64)<br/>
+<b>GCC Version :</b> v6.4.1<br/>
+<b>Google Benchmark Library Version :</b> v1.1.0<br/>
+<b>Other :</b> Hyper-threading is turned off. Out of 6 available CPU cores, Core-0 and Core-1 are isolated.<br/>
 
 <h3>Project structure</h3>
 <p>The sample project's folder structure is as follows:<br/>
-<pre>google_benchmark_library_example/
-|--- google_benchmark_library_example.cpp
-|--- Makefile
-|--- run.sh
-</pre>
+<div class="commands">
+google_benchmark_library_example/<br/>
+|--- google_benchmark_library_example.cpp<br/>
+|--- Makefile<br/>
+|--- run.sh<br/>
+</div>
 </p>
 
 <p>We will start by listing minimal code required for benchmark. The final code is given at the end and also available at <a href="https://github.com/sameermahant/Google_Benchmark_Library_Example" rel="noopener noreferrer" target="_blank">https://github.com/sameermahant/Google_Benchmark_Library_Example</a></p>
 
 <h3>Makefile description</h3>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Makefile.png" alt="Google_Benchmark_Tutorial_Makefile">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Makefile.png" alt="Google_Benchmark_Tutorial_Makefile">
 
 <p>This is used to compile the source code and produce executable. <b>"GOOGLE_BENCHMARK_INCLUDE_PATH"</b> and <b>"GOOGLE_BENCHMARK_LIBRARY_PATH"</b> are related to benchmark library. Also note <b>"-lbenchmark -pthread"</b> included in compilation which are required for benchmark library.</p>
 
 <p>This setup is enough to get started with bench-marking, but we will create a utility bash script which will help us to make and run resulting executable in different configurations.</p>
 
 <h3>run.sh description</h3>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Initial.png" alt="Google_Benchmark_Tutorial_run.sh_Initial">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Initial.png" alt="Google_Benchmark_Tutorial_run.sh_Initial">
 
 <p>This utility script compiles the code, set processor frequency required for max performance and runs our code on an isolated CPU. Setting up the processor frequency and isolating the core are not the topic of this tutorial, may be I will cover these topics in some other article.</p>
 <p>In short setting the CPU to its maximum performance mode and telling the OS to reserve specific core of CPU to only our process gives the most consistent results.</p>
 <p>In above file <b>'taskset -c 1'</b> is used to execute process on Core-1.</p>
 
 <h3>google_benchmark_library_example.cpp description</h3>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Initial.png" alt="Google_Benchmark_Tutorial_Code_Initial">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Initial.png" alt="Google_Benchmark_Tutorial_Code_Initial">
 
 <p>The source code is present in <b>'google_benchmark_library_example.cpp'</b>. Notice the <b>'#include &lt;benchmark/benchmark.h&gt;'</b> statement. This is required as it contains the function declaration provided by the library.</p>
 
@@ -80,22 +104,22 @@ We call this wrapper function with <b>BENCHMARK()</b> macro. We also provide inp
 
 <p>We have different options to provide input like Single, Range, Custom.<br/>
 To provide single input we use following:
-<pre>BENCHMARK(BM_HashFunction)->Args({42});</pre>
+<div class="commands">BENCHMARK(BM_HashFunction)->Args({42});</div>
 </p>
 
 <p>To provide multiple input we can repeat Args() as following:
-<pre>BENCHMARK(BM_HashFunction)->Args({512})->Args({42});</pre>
+<div class="commands">BENCHMARK(BM_HashFunction)->Args({512})->Args({42});</div>
 </p>
 
 <p>We also have the range function which will generate set of values for us with default or custom multiplier:
-<pre>
-BENCHMARK(BM_HashFunction)->Range(1, 2048);
+<div class="commands">
+BENCHMARK(BM_HashFunction)->Range(1, 2048);<br/>
 BENCHMARK(BM_HashFunction)->RangeMultiplier(2)->Range(1,2048);
-</pre>
+</div>
 </p>
 
 <p>To provide custom inputs we can write our own function and use it as follows:
-<pre>BENCHMARK(BM_HashFunction)->Apply(CustomArguments);</pre>
+<div class="commands">BENCHMARK(BM_HashFunction)->Apply(CustomArguments);</div>
 </p>
 
 <p>Here CustomArguments() is a function which will provide input to our benchmark.<br/>
@@ -106,50 +130,39 @@ If you have closely observed the source code you have noticed that we don't have
 
 <p>As we have our setup ready, running the benchmark is just executing the run.sh and observing the results.<br/>
 Following is a sample results:</p>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_Timing_Options.png" alt="Google_Benchmark_Tutorial_Output_Timing_Options">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_Timing_Options.png" alt="Google_Benchmark_Tutorial_Output_Timing_Options">
 
 <p>In output we get the function name, its input value, time taken for it and number of iterations the given operation is executed.<br/>
-The output lists the time in nanoseconds by default but we can change that to microseconds or milliseconds as follows.</p>
-<pre>
-BENCHMARK(BM_HashFunction)->Args({42})->Unit(benchmark::kNanosecond);  // default
-BENCHMARK(BM_HashFunction)->Args({42})->Unit(benchmark::kMicrosecond);
-BENCHMARK(BM_HashFunction)->Args({42})->Unit(benchmark::kMillisecond);
-</pre>
+The output lists the time in nanoseconds by default but we can change that to microseconds or milliseconds as follows:</p>
+<div class="commands">
+BENCHMARK(BM_HashFunction)->Args({42})->Unit(benchmark::kNanosecond);  // default<br/>
+BENCHMARK(BM_HashFunction)->Args({42})->Unit(benchmark::kMicrosecond);<br/>
+BENCHMARK(BM_HashFunction)->Args({42})->Unit(benchmark::kMillisecond);<br/>
+</div>
+<br/>
 
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Input_Options.png" alt="Google_Benchmark_Tutorial_Input_Options">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Input_Options.png" alt="Google_Benchmark_Tutorial_Input_Options">
 
 <p>We can also change the output format from console (default) to json or csv. It is done by providing the command line option <b>'--benchmark_format'</b> while executing the program.</p>
-<pre>
-taskset -c 1 ./google_benchmark_library_example --benchmark_format=console  # default
-taskset -c 1 ./google_benchmark_library_example --benchmark_format=json
-taskset -c 1 ./google_benchmark_library_example --benchmark_format=csv
-</pre>
+<div class="commands">
+taskset -c 1 ./google_benchmark_library_example --benchmark_format=console  # default<br/>
+taskset -c 1 ./google_benchmark_library_example --benchmark_format=json<br/>
+taskset -c 1 ./google_benchmark_library_example --benchmark_format=csv<br/>
+</div>
+<br/>
 
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_JSON_CSV.png" alt="Google_Benchmark_Tutorial_Output_JSON_CSV">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_JSON_CSV.png" alt="Google_Benchmark_Tutorial_Output_JSON_CSV">
 
 <p>We covered how to run the benchmark and get the output. Now let's take a look at how we can use this knowledge to improve our hash function.<br/>
-We have assumed that our hash table has 1000 slots. So in our hash function we are returning number % 1000.</p>
+We have assumed that our hash table has 1000 slots. So in our hash function we are returning <b>number % 1000</b>.</p>
 
 <p>Let's check what happens if we increase number of slots to 1024. Results remains the same (As it should be).<br/>
-So why 1024?<br/>
-The only operation in our function is modulus (%). So to improve our function what we can only do is improve / replace modulus operation.<br/>
-We know that the modulus operation with any number which is power of 2 can be done using following method:</p>
+So why 1024? The only operation in our function is modulus (%). So to improve our function what we can only do is improve / replace modulus operation.<br/>
 
-<p>Let P represent the number which is in power of 2 (like 2, 4, 8, 16, ...)<br/>
-Let n is the number on which we want to perform modulus operation<br/>
-Then n % P = n & (P - 1)</p>
-
-<p>In out HashFunction() we will use it as 'number & 1023'<br/>
+<p>We know that the modulus operation with any number which is power of 2 can be done using following method:</p>
+<p>Let P represent the number which is in power of 2 (like 2, 4, 8, 16, ...). Let n is the number on which we want to perform modulus operation. Then <b>n % P = n & (P - 1)</b>. In our HashFunction() we will use it as '<b>number & 1023</b>'.<br/>
 See the results (Notice time reduced from 9ns to 8ns):</p>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Improvement.png" alt="Google_Benchmark_Tutorial_Improvement">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Improvement.png" alt="Google_Benchmark_Tutorial_Improvement">
 
 <p>We can clearly see that by sacrificing very little memory we got some improvement. It seems very little improvement but a small improvement in critical code can have effect on overall application. Specifically application demanding low latency, collection of such small improvements can create big impact.</p>
 
@@ -157,13 +170,11 @@ See the results (Notice time reduced from 9ns to 8ns):</p>
     target="_blank">"https://github.com/sameermahant/Google_Benchmark_Library_Example"</a> which you can use as sample/template to get started just by modifying some code/function as per requirement. Feel free to copy/clone it.</p>
 
 <h3>Final run.sh file</h3>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Final.png" alt="Google_Benchmark_Tutorial_run.sh_Final">
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Final.png" alt="Google_Benchmark_Tutorial_run.sh_Final">
 
 <h3>Final google_benchmark_library_example.cpp file</h3>
-<p style="text-align: left; margin-left: 20px;">
-    <img class="inline" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Final.png" alt="Google_Benchmark_Tutorial_Code_Final" >
-</p>
+<img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Final.png" alt="Google_Benchmark_Tutorial_Code_Final" >
+
+</div>
 </body>
 </html>
