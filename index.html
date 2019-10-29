@@ -9,64 +9,86 @@
     <meta name="author" content="Sameer Mahant">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
 
         body {
             background: #ecffe0;
         }
 
+        .avatar {
+            border: grey;
+            border-style: solid;
+            border-radius: 10%;
+            width: 120px;
+            margin-bottom: 12px;
+            float: center;
+        }
+
+        .center {
+            text-align: center;
+        }
+
         .content {
             max-width: 900px;
             margin: auto;
-            border: 2px royalblue;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             font-size: 13pt;
         }
 
         .quotes {
-            text-align: justify;
-            border-width: 3px;
-            border-color: gray;
-            border-style: solid;
+            border-color: grey;
             border-radius: 6px;
-            padding: 6px;
-            max-width: 900px;
+            border-style: solid;
+            border-width: 3px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 13pt;
             margin-bottom: 9px;
+            max-width: 900px;
+            padding: 6px;
+            text-align: justify;
         }
 
         a:link {
-        text-decoration: none;
+            color: #718de8;
+            text-decoration: none;
         }
 
         a:visited {
-        text-decoration: none;
+            color: grey;
+            text-decoration: none;
         }
 
         a:hover {
-        text-decoration: underline;
+            color: #b8e69c;
+            text-decoration: underline;
         }
 
         a:active {
-        text-decoration: underline;
+            color: #b8e69c;
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
 <div class="content">
+    <div class="center">
+        <img alt="Avatar" class="avatar" src="https://avatars1.githubusercontent.com/u/3286086?s=400&u=7f86cb89b5798f8392e76a7c7eb3802bab2b5003&v=4"><br/>
+        [&nbsp;<a target="_blank" href="https://github.com/sameermahant" rel="me">GitHub</a>&nbsp;]
+        [&nbsp;<a target="_blank" href="https://in.linkedin.com/in/sameermahant" rel="me">LinkedIn</a>&nbsp;]
+    </div>
 
-    <h4 align="center"><a href="https://in.linkedin.com/in/sameermahant" target="_blank">https://in.linkedin.com/in/sameermahant</a></h4>
-    <h4 align="center"><a href="https://github.com/sameermahant" target="_blank">https://github.com/sameermahant</a></h4>
-    <hr/>
+    <hr color="#b8e69c"; />
 
-    <h1 align="center">Pages</h1>
-    <ul>
-        <li><h3 align="left"><a href="https://www.intellect.ind.in/pages/handling-coding-style-developer-friendly-and-efficient-way.html" target="_blank">Handling Coding Style - Developer Friendly and Efficient Way</a></h3></li>
-        <li><h3 align="left"><a href="https://www.intellect.ind.in/pages/installing-google-benchmark-library-on-linux-from-source-code.html" target="_blank">Installing 'Google Benchmark' library on Linux from source code</a></h3></li>
-        <li><h3 align="left"><a href="https://www.intellect.ind.in/pages/google-benchmark-cpp-makefile-example.html" target="_blank">'Google Benchmark' library C++ Makefile example</a></h3></li>
-    </ul>
-    <hr/>
+    <h1 class="center">Posts</h1>
+    <ol reversed>
+        <h3><li><a href="https://www.intellect.ind.in/pages/google-benchmark-cpp-makefile-example.html" target="_blank">'Google Benchmark' library C++ Makefile example</a></li></h3>
+        <h3><li><a href="https://www.intellect.ind.in/pages/installing-google-benchmark-library-on-linux-from-source-code.html" target="_blank">Installing 'Google Benchmark' library on Linux from source code</a></li></h3>
+        <h3><li><a href="https://www.intellect.ind.in/pages/handling-coding-style-developer-friendly-and-efficient-way.html" target="_blank">Handling Coding Style - Developer Friendly and Efficient Way</a></li></h3>
+    </ol>
+    <hr color="#b8e69c"; />
 
-    <h1 align="center">Quotes</h1>
+    <h1 class="center">Quotes</h1>
 
     <div class="quotes">
         <p><b>Albert Einstein</b></p>
