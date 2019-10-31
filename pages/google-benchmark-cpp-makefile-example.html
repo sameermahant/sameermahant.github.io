@@ -2,37 +2,77 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Using Google ‘Benchmark’ library to micro-benchmark in Makefile project</title>
+    <title>Using 'Google Benchmark' library to micro-benchmark in Makefile project</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
 
         body {
             background: #fbffe0;
         }
 
+        p {
+            text-align: justify;
+        }
+
+        a, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        a:link {
+            color: #718de8;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: grey;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #b8e69c;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #b8e69c;
+            text-decoration: underline;
+        }
+
+        .avatar {
+            border-color: grey;
+            border-radius: 10%;
+            border-style: solid;
+            margin-bottom: 12px;
+            width: 120px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
         .content {
-            max-width: 900px;
-            margin: auto;
-            border: 2px royalblue;
             font-family: 'Roboto', sans-serif;
             font-size: 13pt;
+            margin: auto;
+            max-width: 900px;
         }
 
         .border {
-            border-width: 5px;
             border-color: gray;
-            border-style: solid;
             border-radius: 10px;
+            border-style: solid;
+            border-width: 5px;
             max-width: 900px;
         }
 
         .commands {
-            border-width: 3px;
             border-color: gray;
-            border-style: solid;
             border-radius: 6px;
-            padding: 5px;
+            border-style: solid;
+            border-width: 3px;
             max-width: 900px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -40,7 +80,16 @@
 <body>
 <div class="content">
 
-<h1 style="text-align: center;">Using Google ‘Benchmark’ library to micro-benchmark in Makefile project</h1>
+<div class="center">
+    <img alt="Avatar" class="avatar" src="https://avatars1.githubusercontent.com/u/3286086?s=400&u=7f86cb89b5798f8392e76a7c7eb3802bab2b5003&v=4"/><br/>
+    [&nbsp;<a target="_blank" href="https://www.intellect.ind.in">Home</a>&nbsp;]
+    [&nbsp;<a target="_blank" href="https://github.com/sameermahant" rel="me">GitHub</a>&nbsp;]
+    [&nbsp;<a target="_blank" href="https://in.linkedin.com/in/sameermahant" rel="me">LinkedIn</a>&nbsp;]
+</div>
+
+<hr color="#b8e69c" />
+
+<h1 class="center">Using 'Google Benchmark' library to micro-benchmark in Makefile project</h1>
 
 <p>In <a href="https://www.intellect.ind.in/pages/installing-google-benchmark-library-on-linux-from-source-code.html" rel="noopener noreferrer" target="_blank">previous tutorial</a> we have seen how to install the Google Benchmark library on Linux system. What I didn't mentioned in last article is that it's an "micro-benchmark support library". It means that it is better to use the library to benchmark specific operations/part of code in isolation just like unit-testing.</p>
 
@@ -92,7 +141,7 @@ google_benchmark_library_example/<br/>
 <h3>google_benchmark_library_example.cpp description</h3>
 <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Initial.png" alt="Google_Benchmark_Tutorial_Code_Initial">
 
-<p>The source code is present in <b>'google_benchmark_library_example.cpp'</b>. Notice the <b>'#include &lt;benchmark/benchmark.h&gt;'</b> statement. This is required as it contains the function declaration provided by the library.</p>
+<p>The source code is present in <b>'google_benchmark_library_example.cpp'</b>. <br/>Notice the <b>'#include &lt;benchmark/benchmark.h&gt;'</b> statement. This is required as it contains the function declaration provided by the library.</p>
 
 <b>NOTE:</b> Though I am using v1.1.0 of library for demonstration purpose I have not used <b>"#include &lt;benchmark/benchmark_api.h&gt;"</b> as comments in the file <b>'benchmark_api.h' for v1.2.0</b> suggest it is going to be deprecated in future versions and will be replaced by <b>'benchmark.h'</b>.
 
@@ -170,8 +219,8 @@ See the results (Notice time reduced from 9ns to 8ns):</p>
 
 <p>We can clearly see that by sacrificing very little memory we got some improvement. It seems very little improvement but a small improvement in critical code can have effect on overall application. Specifically application demanding low latency, collection of such small improvements can create big impact.</p>
 
-<p>The complete code is given below. I have also made it available at <a href="https://github.com/sameermahant/Google_Benchmark_Library_Example" rel="noopener noreferrer"
-    target="_blank">"https://github.com/sameermahant/Google_Benchmark_Library_Example"</a> which you can use as sample/template to get started just by modifying some code/function as per requirement. Feel free to copy/clone it.</p>
+<p>The complete code is given below. I have also made it available at: <br/> <a href="https://github.com/sameermahant/Google_Benchmark_Library_Example" rel="noopener noreferrer"
+    target="_blank">https://github.com/sameermahant/Google_Benchmark_Library_Example</a> which you can use as sample / template to get started just by modifying some code / function as per requirement. Feel free to copy / clone it.</p>
 
 <h3>Final run.sh file</h3>
 <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Final.png" alt="Google_Benchmark_Tutorial_run.sh_Final">
