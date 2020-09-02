@@ -4,7 +4,7 @@ let urlsToCache = [
     '/favicon.ico'
     , 'index.html'
     , '404.html'
-    , 'pages / google - benchmark - cpp - makefile - example.html'
+    , 'pages/google-benchmark-cpp-makefile-example.html'
 ];
 
 self.addEventListener('install', (event) => {
