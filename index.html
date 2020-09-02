@@ -8,7 +8,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             console.log("Service worker registration in progress.");
-            navigator.serviceWorker.register("service-worker.js", { scope: "./" })
+            navigator.serviceWorker.register("/service-worker.js", { scope: "./" })
             .then(
                 function (reg) { console.log("Service worker registered."); }
                 , function () { console.log('Service worker registration failure.'); }
