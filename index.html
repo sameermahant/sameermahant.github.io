@@ -1,9 +1,22 @@
 <!doctype html>
 
-<html lang="en" manifest="intellect.appcache">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            console.log("Service worker registration in progress.");
+            navigator.serviceWorker.register("service-worker.js", { scope: "./" })
+            .then(
+                function (reg) { console.log("Service worker registered."); }
+                , function () { console.log('Service worker registration failure.'); }
+                );
+        } else {
+            console.log("Service worker is not supported.");
+        }
+    </script>
 
     <title>Intellect's home</title>
     <meta name="description" content="Intellect's home">
