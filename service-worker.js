@@ -1,35 +1,32 @@
-let CACHE_NAME = 'intellect-cache';
+const cacheName = 'intellect-cache-v1';
 
-let urlsToCache = [
-    '/favicon.ico'
+const resourcesToPrecache = [
+    '/'
+    , '/favicon.ico'
     , 'index.html'
     , '404.html'
     , 'pages/google-benchmark-cpp-makefile-example.html'
 ];
 
-self.addEventListener('install', (event) => {
-    console.log(event);
+self.addEventListener('install', event => {
+    console.log('Service Worker install event!');
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function (cache) {
-                console.log('Opened cache');
-                return cache.addAll(urlsToCache);
+        caches.open(cacheName)
+            .then(cache => {
+                return cache.addAll(resourcesToPrecache);
             })
     );
 });
 
-self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function (response) {
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
+self.addEventListener('fetch', event => {
+    console.log('Fetch intercepted for: ', event.request.url);
+    event.respondWith(caches.match(event.request)
+            .then(cachedResponse => {
+                return cachedResponse || fetch(event.request);
             })
     );
 });
 
 self.addEventListener('activate', (event) => {
-    console.log(event);
+    console.log('Activate event!');
 });
