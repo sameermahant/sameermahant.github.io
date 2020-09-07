@@ -1,7 +1,10 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="author" content="Sameer Mahant">
+    <meta name="description" content="In this tutorial we will look at how to compile and install Google's benchmark library on Linux system from source code.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet dns-prefetch preconnect" href="https://fonts.googleapis.com/css?family=Roboto:400,600|Open+Sans:400,600&display=swap">
 
@@ -79,78 +82,76 @@
 
 <body>
 <div class="content">
+    <div class="center">
+        <img alt="Avatar" class="avatar" src="/images/avatar/avatar.webp"/><br/>
+        [&nbsp;<a target="_blank" href="https://www.intellect.ind.in">Home</a>&nbsp;]
+        [&nbsp;<a target="_blank" href="https://github.com/sameermahant" rel="me noopener">GitHub</a>&nbsp;]
+        [&nbsp;<a target="_blank" href="https://in.linkedin.com/in/sameermahant" rel="me noopener">LinkedIn</a>&nbsp;]
+    </div>
 
-<div class="center">
-    <img alt="Avatar" class="avatar" src="/images/avatar/avatar.webp"/><br/>
-    [&nbsp;<a target="_blank" href="https://www.intellect.ind.in">Home</a>&nbsp;]
-    [&nbsp;<a target="_blank" href="https://github.com/sameermahant" rel="me noopener">GitHub</a>&nbsp;]
-    [&nbsp;<a target="_blank" href="https://in.linkedin.com/in/sameermahant" rel="me noopener">LinkedIn</a>&nbsp;]
-</div>
+    <hr color="#b8e69c" />
 
-<hr color="#b8e69c"; />
+    <h1 class="center">Installing 'Google Benchmark' library on Linux from source code</h1>
 
-<h1 class="center">Installing 'Google Benchmark' library on Linux from source code</h1>
+    <p>In this tutorial we will look at how to compile and install Google's benchmark library on Linux system from source code.</p>
 
-<p>In this tutorial we will look at how to compile and install Google's benchmark library on Linux system from source code.</p>
+    <h3>Step 1 : Downloading source code</h3>
+    <p>This can be done in two ways.</p>
 
-<h3>Step 1 : Downloading source code</h3>
-<p>This can be done in two ways.</p>
+    <p>1. Directly download the zip file containing source code of library from web URL:<br/>
+    <p style="margin-left: 20px;"><a href="https://github.com/google/benchmark/archive/master.zip" rel="noopener noreferrer" target="_blank">https://github.com/google/benchmark/archive/master.zip</a></p>
 
-<p>1. Directly download the zip file containing source code of library from web URL:<br/>
-<p style="margin-left: 20px;"><a href="https://github.com/google/benchmark/archive/master.zip" rel="noopener noreferrer" target="_blank">https://github.com/google/benchmark/archive/master.zip</a></p>
-</p>
+    <p>2. Clone the repository with your preferred Git/SVN client using repositories web URL:<br/>
+    <p style="margin-left: 20px;"><a href="https://github.com/google/benchmark.git" rel="noopener noreferrer" target="_blank">https://github.com/google/benchmark.git</a></p>
 
-<p>2. Clone the repository with your preferred Git/SVN client using repositories web URL:<br/>
-<p style="margin-left: 20px;"><a href="https://github.com/google/benchmark.git" rel="noopener noreferrer" target="_blank">https://github.com/google/benchmark.git</a></p>
-</p>
+    <p>I prefer downloading zip, as currently I am not contributing in development of library and just want to try it out for my projects.</p>
+    <img src="../images/google_benchmark/Google_Benchmark_GitHub_Page.png" alt="Google_Benchmark_GitHub_Page" class="border">
 
-<p>I prefer downloading zip, as currently I am not contributing in development of library and just want to try it out for my projects.</p>
-<img src="../images/google_benchmark/Google_Benchmark_GitHub_Page.png" alt="Google_Benchmark_GitHub_Page" class="border">
+    <h3>Step 2 : Building / Compiling source code</h3>
+    <p>After zip is downloaded, we have to extract it using unzip command.</p>
 
-<h3>Step 2 : Building / Compiling source code</h3>
-<p>After zip is downloaded, we have to extract it using unzip command.</p>
+    <div class="commands">unzip benchmark-master.zip</div>
+    <p>This will create <b>benchmark-master</b> directory containing actual source code of library. Goto <b>benchmark-master</b> directory using following command:</p>
 
-<div class="commands">unzip benchmark-master.zip</div>
-<p>This will create <b>benchmark-master</b> directory containing actual source code of library. Goto <b>benchmark-master</b> directory using following command:</p>
+    <div class="commands">cd benchmark-master</div>
+    <p>'benchmark' library uses CMake to manage its build process, so before starting build we first must generate <b>Makefile</b> using <b>cmake</b>.<br/>
+    Following are the commands to generate a <b>Makefile</b>.</p>
 
-<div class="commands">cd benchmark-master</div>
-<p>'benchmark' library uses CMake to manage its build process, so before starting build we first must generate <b>Makefile</b> using <b>cmake</b>.<br/>
-Following are the commands to generate a <b>Makefile</b>.</p>
+    <div class="commands">
+    mkdir build<br/>
+    cd build<br/>
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/toolchain/google_benchmark_v1.1.0
+    </div>
+    <p>Above commands create a <b>build</b> directory (you can give it any name you want) in benchmark-master directory which contain the source code. Goto <b>build</b> directory and execute <b>cmake</b> command with given options.</p>
+    <p>
+    In the last command<br/>
+    <b>".."&nbsp;</b>is the path to source code root folder (in this case the parent folder).<br/>
+    -DCMAKE_BUILD_TYPE is set to Release as our intention is to consume the library and not to debug it.<br/>
+    -DCMAKE_INSTALL_PREFIX option is custom install directory where our generated library will be installed. Without this option it will install into default system directories.
+    </p>
 
-<div class="commands">
-mkdir build<br/>
-cd build<br/>
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/toolchain/google_benchmark_v1.1.0
-</div>
-<p>Above commands create a <b>build</b> directory (you can give it any name you want) in benchmark-master directory which contain the source code. Goto <b>build</b> directory and execute <b>cmake</b> command with given options.</p>
-<p>
-In the last command<br/>
-<b>".."&nbsp;</b>is the path to source code root folder (in this case the parent folder).<br/>
--DCMAKE_BUILD_TYPE is set to Release as our intention is to consume the library and not to debug it.<br/>
--DCMAKE_INSTALL_PREFIX option is custom install directory where our generated library will be installed. Without this option it will install into default system directories.
-</p>
+    <p>
+    I prefer using specific install directory so that I can use/try multiple versions of library without disturbing existing system setup. Also uninstalling is as simple as deleting the directory.
+    </p>
+    <p>After successful execution of above commands, <b>Makefile</b> is generated in current directory (i.e. inside build directory).<br/>
+    Now use make command to start compiling source code and generate the library.
+    <div class="commands">make</div>
+    </p>
 
-<p>
-I prefer using specific install directory so that I can use/try multiple versions of library without disturbing existing system setup. Also uninstalling is as simple as deleting the directory.
-</p>
-<p>After successful execution of above commands, <b>Makefile</b> is generated in current directory (i.e. inside build directory).<br/>
-Now use make command to start compiling source code and generate the library.
-<div class="commands">make</div>
-</p>
+    <h3>Step 3 : Installing generated library</h3>
+    <p>After compilation is successful, installing the library is very simple. Just give following command:</p>
+    <div class="commands">sudo make install</div>
+    <p>This will simply copy the generated library and required file to given installation location.</p>
 
-<h3>Step 3 : Installing generated library</h3>
-<p>After compilation is successful, installing the library is very simple. Just give following command:</p>
-<div class="commands">sudo make install</div>
-<p>This will simply copy the generated library and required file to given installation location.</p>
+    <h3>Step 4 : Cleanup</h3>
+    <p>Finally, we have to delete the build folder as it is no longer needed. Fire following commands on terminal:</p>
+    <div class="commands">
+    cd ..<br/>
+    rm -rf build
+    </div>
 
-<h3>Step 4 : Cleanup</h3>
-<p>Finally, we have to delete the build folder as it is no longer needed. Fire following commands on terminal:</p>
-<div class="commands">
-cd ..<br/>
-rm -rf build
-</div>
+    <p>We have completed installation part of library. In <a href="https://www.intellect.ind.in/pages/google-benchmark-cpp-makefile-example.html" rel="noopener noreferrer" target="_blank">next tutorial</a> we will look into how to use it to benchmark programs.</p>
 
-<p>We have completed installation part of library. In <a href="https://www.intellect.ind.in/pages/google-benchmark-cpp-makefile-example.html" rel="noopener noreferrer" target="_blank">next tutorial</a> we will look into how to use it to benchmark programs.</p>
 </div>
 </body>
 </html>
