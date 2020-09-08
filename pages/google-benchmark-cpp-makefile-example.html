@@ -127,21 +127,21 @@
     <p>We will start by listing minimal code required for benchmark. The final code is given at the end and also available at <a href="https://github.com/sameermahant/Google_Benchmark_Library_Example" rel="noopener noreferrer" target="_blank">https://github.com/sameermahant/Google_Benchmark_Library_Example</a></p>
 
     <h3>Makefile description</h3>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Makefile.png" alt="Google_Benchmark_Tutorial_Makefile">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Makefile.webp" alt="Google_Benchmark_Tutorial_Makefile">
 
     <p>This is used to compile the source code and produce executable. <b>"GOOGLE_BENCHMARK_INCLUDE_PATH"</b> and <b>"GOOGLE_BENCHMARK_LIBRARY_PATH"</b> are related to benchmark library. Also note <b>"-lbenchmark -pthread"</b> included in compilation which are required for benchmark library.</p>
 
     <p>This setup is enough to get started with bench-marking, but we will create a utility bash script which will help us to make and run resulting executable in different configurations.</p>
 
     <h3>run.sh description</h3>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Initial.png" alt="Google_Benchmark_Tutorial_run.sh_Initial">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Initial.webp" alt="Google_Benchmark_Tutorial_run.sh_Initial">
 
     <p>This utility script compiles the code, set processor frequency required for max performance and runs our code on an isolated CPU. Setting up the processor frequency and isolating the core are not the topic of this tutorial, may be I will cover these topics in some other article.</p>
     <p>In short setting the CPU to its maximum performance mode and telling the OS to reserve specific core of CPU to only our process gives the most consistent results.</p>
     <p>In above file <b>'taskset -c 1'</b> is used to execute process on Core-1.</p>
 
     <h3>google_benchmark_library_example.cpp description</h3>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Initial.png" alt="Google_Benchmark_Tutorial_Code_Initial">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Initial.webp" alt="Google_Benchmark_Tutorial_Code_Initial">
 
     <p>The source code is present in <b>'google_benchmark_library_example.cpp'</b>. <br/>Notice the <b>'#include &lt;benchmark/benchmark.h&gt;'</b> statement. This is required as it contains the function declaration provided by the library.</p>
 
@@ -185,7 +185,7 @@
 
     <p>As we have our setup ready, running the benchmark is just executing the run.sh and observing the results.<br/>
     Following is a sample results:</p>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_Timing_Options.png" alt="Google_Benchmark_Tutorial_Output_Timing_Options">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_Timing_Options.webp" alt="Google_Benchmark_Tutorial_Output_Timing_Options">
 
     <p>In output we get the function name, its input value, time taken for it and number of iterations the given operation is executed.<br/>
     The output lists the time in nanoseconds by default but we can change that to microseconds or milliseconds as follows:</p>
@@ -196,7 +196,7 @@
     </div>
     <br/>
 
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Input_Options.png" alt="Google_Benchmark_Tutorial_Input_Options">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Input_Options.webp" alt="Google_Benchmark_Tutorial_Input_Options">
 
     <p>We can also change the output format from console (default) to json or csv. It is done by providing the command line option <b>'--benchmark_format'</b> while executing the program.</p>
     <div class="commands">
@@ -206,7 +206,7 @@
     </div>
     <br/>
 
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_JSON_CSV.png" alt="Google_Benchmark_Tutorial_Output_JSON_CSV">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Output_JSON_CSV.webp" alt="Google_Benchmark_Tutorial_Output_JSON_CSV">
 
     <p>We covered how to run the benchmark and get the output. Now let's take a look at how we can use this knowledge to improve our hash function.<br/>
     We have assumed that our hash table has 1000 slots. So in our hash function we are returning <b>number % 1000</b>.</p>
@@ -217,7 +217,7 @@
     <p>We know that the modulus operation with any number which is power of 2 can be done using following method:</p>
     <p>Let P represent the number which is in power of 2 (like 2, 4, 8, 16, ...). Let n is the number on which we want to perform modulus operation. Then <b>n % P = n & (P - 1)</b>. In our HashFunction() we will use it as '<b>number & 1023</b>'.<br/>
     See the results (Notice time reduced from 9ns to 8ns):</p>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Improvement.png" alt="Google_Benchmark_Tutorial_Improvement">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Improvement.webp" alt="Google_Benchmark_Tutorial_Improvement">
 
     <p>We can clearly see that by sacrificing very little memory we got some improvement. It seems very little improvement but a small improvement in critical code can have effect on overall application. Specifically application demanding low latency, collection of such small improvements can create big impact.</p>
 
@@ -225,10 +225,10 @@
         target="_blank">https://github.com/sameermahant/Google_Benchmark_Library_Example</a> which you can use as sample / template to get started just by modifying some code / function as per requirement. Feel free to copy / clone it.</p>
 
     <h3>Final run.sh file</h3>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Final.png" alt="Google_Benchmark_Tutorial_run.sh_Final">
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_run.sh_Final.webp" alt="Google_Benchmark_Tutorial_run.sh_Final">
 
     <h3>Final google_benchmark_library_example.cpp file</h3>
-    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Final.png" alt="Google_Benchmark_Tutorial_Code_Final" >
+    <img class="border" src="../images/google_benchmark/Google_Benchmark_Tutorial_Code_Final.webp" alt="Google_Benchmark_Tutorial_Code_Final" >
 
 </div>
 </body>
