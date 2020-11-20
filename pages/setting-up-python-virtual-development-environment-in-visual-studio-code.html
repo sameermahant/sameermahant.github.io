@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Sameer Mahant">
+    <meta name="description" content="Setting up Python Virtual Development Environment in Visual Studio Code">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet dns-prefetch preconnect" href="https://fonts.googleapis.com/css?family=Roboto:400,600|Open+Sans:400,600&display=swap">
+
+    <title>Setting up Python Virtual Development Environment in Visual Studio Code</title>
+    <style>
+        body {
+            background: #fbffe0;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        a,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        a:link {
+            color: #718de8;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: grey;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #b8e69c;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: #b8e69c;
+            text-decoration: underline;
+        }
+
+        .avatar {
+            border-color: grey;
+            border-radius: 10%;
+            border-style: solid;
+            margin-bottom: 12px;
+            width: 120px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .content {
+            font-family: 'Roboto', sans-serif;
+            font-size: 13pt;
+            margin: auto;
+            max-width: 900px;
+        }
+
+        .border {
+            border-color: gray;
+            border-radius: 10px;
+            border-style: solid;
+            border-width: 5px;
+            max-width: 900px;
+        }
+
+        .commands {
+            border-color: gray;
+            border-radius: 6px;
+            border-style: solid;
+            border-width: 3px;
+            max-width: 900px;
+            padding: 5px;
+        }
+
+        code {
+            font-family: Consolas,"courier new";
+            color: rgba(54, 17, 25, 0.938);
+            background-color: #fcfcfc;
+            padding: 2px;
+        }
+    </style>
+</head>
+
+<div class="content">
+    <div class="center">
+        <img alt="Avatar" class="avatar" src="/images/avatar/avatar.webp" /><br />
+        [&nbsp;<a target="_blank" href="https://www.intellect.ind.in">Home</a>&nbsp;]
+        [&nbsp;<a target="_blank" href="https://github.com/sameermahant" rel="me noopener">GitHub</a>&nbsp;]
+        [&nbsp;<a target="_blank" href="https://in.linkedin.com/in/sameermahant" rel="me noopener">LinkedIn</a>&nbsp;]
+    </div>
+
+    <hr color="#b8e69c" />
+
+    <h1 class="center">Setting up Python Virtual Development Environment in Visual Studio Code</h1>
+
+    <h2 id="1-python-installation">1. Python Installation</h2>
+    <ul>
+        <li>Download latest python installer and install it.
+            <a href="https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe"><br>
+                https://www.python.org/ftp/python/3.9.0/python-3.9.0-amd64.exe</a>
+        </li>
+        <li>During installation deselect <code>Install launcher for all users</code> option to install it only for current user.</li>
+        <li>Deselect <code>Add Python X.X to PATH</code> option. We will do it manually.</li>
+        <li>Click on <code>Customize installation</code></li>
+        <li>Click <code>Next</code></li>
+        <li>Select <code>Precompile standard library</code></li>
+        <li><code>Customize install location</code> to your preferred path. In this case it is <code>E:\Tools\Python39</code></li>
+    </ul>
+    <h2 id="2-create-virtual-environment">2. Create Virtual Environment</h2>
+    <ul>
+        <li>Start windows command prompt</li>
+        <li>Update pip using following command:<br>
+            <code>E:\Tools\Python39\python.exe -m pip install --upgrade pip</code></li>
+        <li>Create virtual environemnt using following command:<br>
+            <code>E:\Tools\Python39\python.exe -m venv E:\PythonVirtualEnvironments\py39env</code></li>
+        <li>Activate the virtual environment and check python version, path<br>
+            <code>E:\PythonVirtualEnvironments\py39env\Scripts\activate</code></li>
+        <li>Upgrade pip in virtual environment:<br>
+            <code>python -m pip install --upgrade pip</code></li>
+        <li>The virtual environment setup is done. You can create seperate virtual enviroments for different projects and install project specific python libraries in the project specific virtual environment instead of installing python libraries system wide.</li>
+        <li>Use following command in the activated virtual environment to install specific python libraries:<br>
+            <code>python -m pip install &lt;library_1&gt; &lt;library_2&gt; ...</code></li>
+        <li>To list the installed libraries use following command:<br>
+            <code>pip list</code></li>
+        <li>To exit the virtual environment use following command:<br>
+            <code>deactivate</code></li>
+    </ul>
+    <h2 id="3-addin-python-to-path-environment-variable-for-current-user-account">3. Addin python to PATH environment variable for current user account</h2>
+    <ul>
+        <li>Start <code>Edit environment variables for your account</code></li>
+        <li>Double Click on <code>Path</code> Variable</li>
+        <li>Add following entry: <code>E:\Tools\Python39</code></li>
+    </ul>
+    <h2 id="4-visual-studio-code-and-python-extention-installation">4. Visual Studio Code and Python Extention Installation </h2>
+    <ul>
+        <li>Download and Install <code>Visual Studio Code</code></li>
+        <li>Start <code>Visual Studio Code</code> and install <code>Python extension for Visual Studio Code</code> published by <code>Microsoft</code></li>
+    </ul>
+    <h2 id="5-setting-up-project-to-use-virtual-environment">5. Setting Up Project to use virtual environment</h2>
+    <ul>
+        <li>Create a folder for your project files. Example: <code>PythonApp</code></li>
+        <li>Add <code>app.py</code> file to project folder with simple print statement.<br>
+            <code>print(&quot;Hello Python&quot;)</code></li>
+        <li>Open Project folder in <code>Visual Studio Code</code></li>
+        <li>Open the <code>app.py</code> file in editor</li>
+        <li>From the bottom left of status bar select any one python interpreter. This will create a folder <code>.vscode</code> in your project folder for VSCode specific settings. It will also create a <code>settings.json</code> file</li>
+        <li>Edit / Add following lines in <code>settings.json</code> file as per your python and virtual environemnt location
+            <code><br><br>
+            "python.venvPath":"E:\\PythonVirtualEnvironments",
+            "python.pythonPath":"E:\\PythonVirtualEnvironments\\py39env\\Scripts\\python.exe"
+            <br><br></code>
+        </li>
+        <li>Restart VSCode and open project and open <code>app.py</code></li>
+        <li>Now you can run <code>app.py</code> from VSCode IDE. It will automatically activate the virtual environment to execute the python code.</li>
+    </ul>
+</div>
+</body>
+</html>
