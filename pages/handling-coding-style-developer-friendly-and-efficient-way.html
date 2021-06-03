@@ -118,7 +118,7 @@
 
     <p>Let's look at how we can implement above features.</p>
 
-    <p>How can we customize coding style with only one setting? To answer this question, I would like to briefly describe  code formatter utility 'Artistic Style'. It automatically re-indents and re-formats source files for various programming languages. It takes input as source code file and specifications of required formatting style as various command line arguments to alter/produce file with required formatting style.</p>
+    <p>How can we customize coding style with only one setting? To answer this question, I would like to briefly describe  code format utility 'Artistic Style'. It automatically re-indents and re-formats source files for various programming languages. It takes input as source code file and specifications of required formatting style as various command line arguments to alter/produce file with required formatting style.</p>
 
     <p>
     <img src="../images/artistic_style/Sample_code_before_applying_Artistic_Style_utility.webp" alt="Sample code before applying Artistic style utility" class="border">
@@ -149,18 +149,18 @@
     <b>Result of applying Artistic style utility on sample code.</b>
     </p>
 
-    <p>All options that developer wants in his coding style can be teated as a single string, Which can be processed to format source code. From above example <b>"-A2 -s4 -p -k1 -W3 -j -c"</b> can be considered as coding standard. There are well known styles like allman, bsd, kr, gnu, etc. are available which can be easily applied using single option. For example: <b>astyle --style=kr sample.cpp</b></p>
+    <p>All options that developer wants in his coding style can be treated as a single string, Which can be processed to format source code. From above example <b>"-A2 -s4 -p -k1 -W3 -j -c"</b> can be considered as coding standard. There are well known styles like allman, bsd, kr, gnu, etc. are available which can be easily applied using single option. For example: <b>astyle --style=kr sample.cpp</b></p>
 
-    <p>To be able to change coding style using only one setting, we should provide one setting in tool where developer can set its coding style string. Developer will create its coding style once as set of option string, which he/she can use with different editors. It is also easy to share your coding style just as single string of options. In Visual Studio we can enable such feature using an Astyle Extention: <br/>
+    <p>To be able to change coding style using only one setting, we should provide one setting in tool where developer can set its coding style string. Developer will create its coding style once as set of option string, which he/she can use with different editors. It is also easy to share your coding style just as single string of options. In Visual Studio we can enable such feature using an Astyle Extension: <br/>
     <a href="https://visualstudiogallery.msdn.microsoft.com/2f3f04cd-2866-4e47-a671-d1cc9cc3fb02" rel="noopener noreferrer" target="_blank">https://visualstudiogallery.msdn.microsoft.com/2f3f04cd-2866-4e47-a671-d1cc9cc3fb02</a>
 
     <p> <img src="../images/artistic_style/VS2015_Astyle_Extention.webp" alt="Astyle Extention in Visual Studio 2015" class="border"> <br/>
-    <b>Astyle Extention in Visual Studio 2015</b>
+    <b>Astyle Extension in Visual Studio 2015</b>
     </p>
 
     <p>If every or at lease popular editors/IDE have this common feature we can achieve goal of 'customizing coding style with only single setting'.</p>
 
-    <p>For freedom of coding styl without violating project coding standard we need some additional but similar functionality. We need two instead of one coding style setting. In one setting we can set the project related coding style which can be used while code commit, other one can be used to format code as per developer preferences while he/she is working on code.</p>
+    <p>For freedom of coding style without violating project coding standard we need some additional but similar functionality. We need two instead of one coding style setting. In one setting we can set the project related coding style which can be used while code commit, other one can be used to format code as per developer preferences while he/she is working on code.</p>
 
     <p>Having above features in tools, will make it possible to work with your own coding style without worrying about project coding style.</p>
 
